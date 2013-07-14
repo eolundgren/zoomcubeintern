@@ -12,6 +12,7 @@
     <style>
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+
       }
     </style>
     <link href="../../assets/css/bootstrap-responsive.css" rel="stylesheet">
@@ -27,21 +28,29 @@
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../assets/ico/apple-touch-icon-72-precomposed.png">
                     <link rel="apple-touch-icon-precomposed" href="../../assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="../../assets/ico/favicon.png">
+                                   
+
+
 
   </head>
 
   <body>
-    <script>
-    var FirstTime=1;
+    
 
-    </script>
-    <br>
-    <br>
-    <br>
-    <!-- Button to trigger modal -->
+
+
+    
+    
+    <!-- Button to trigger modal. Currently deactivated since Modal activates on load. -->
+    
+<!--
 <a href="#myModal" role="button" class="btn" data-toggle="modal">Yes, I'm new here.</a>
- <script>$('#myModal').popover(data-content="Hello")
- $('#myModal').popover(data-trigger='click')</script>
+ <script>//$('#myModal').popover(data-content="Hello")
+//$('#myModal').popover(data-trigger='click')</script>
+-->
+
+
+ 
 <!-- Modal -->
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
@@ -52,17 +61,34 @@
     <p>Zoomcube has a small arsenal of intuitive features made to give you the best experiece possible. Would you like to learn more about them?</p>
   </div>
   <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="FirstTimeNo()">No</button>
-    <button class="btn btn-primary" data-dismiss="modal" onclick="FirstTimeProcess()">Yes</button>
+    <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="FirstTimeNo();">No</button>
+    <button class="btn btn-primary" data-dismiss="modal" onclick="FirstTimeProcess();">Yes</button>
   </div>
 </div>
-
+<div>  
+<a href="#" id="example1" class="btn btn-danger" data-toggle="popover" rel="popover" data-content="You click buttons like this to do things. It's pretty cool." onclick="FirstTimeProcess();" data-original-title="">Tutorial 1</a>  
+</div>  
+<br>
+    <br>
+<div>  
+<a href="#" id="example2" class="btn btn-danger" data-toggle="popover" rel="popover" data-content="Hey, now click this one." onclick="FirstTimeProcess();" data-original-title="">Tutorial 2</a>  
+</div>  
+<br>
+    <br>
+<div>  
+<a href="#" id="example3" class="btn btn-danger" data-toggle="popover" rel="popover" data-content="Now do this one." onclick="FirstTimeProcess();" data-original-title="">Tutorial 3</a>  
+</div>  
+<br>
+    <br>
+<div>  
+<a href="#" id="example4" class="btn btn-danger" data-toggle="popover" rel="popover" data-content="This one is pretty cool too." data-original-title="">Tutorial 4</a>  
+</div>  
+<div>  
+  <br>
+    <br>
 <div>
 <a href="#myTab" id = "a" rel="tooltip"  data-original-title="Like this.">We have a lot of other things too!</a>
 </div>
-<div>  
-<a href="#" id="example" class="btn btn-danger" data-toggle="popover" rel="popover" data-content="You click buttons like this to do things. It's pretty cool." data-original-title="">What does this do?</a>  
-</div>  
 
 
 
@@ -91,41 +117,51 @@ jQuery(function ($) {
     $("a").tooltip()
 });
 </script>
-
 <script>  
-$(function ()  
-{ $("#example").popover('show');  
+
+/*{$(function ()  
+{ if(FirstTime==0)$("#example1").popover('show');  
 });
+}*/
 </script>
 <script>
+
+var FirstTime=0;
+                                   
 function FirstTimeProcess()
 {
+
   if(FirstTime==0)
   {
-  var FirstTime=1;
+    
+    $("#example1").popover('show');
+  FirstTime=1;
   }
-  if(FirstTime==1)
-  {
-  $("#example").popover('show');
-  var FirstTime=2;
-  }
-  if(FirstTime==2)
-  {
-  var FirstTime=3;
-  }
-  if(FirstTime==3)
-  {
-  var FirstTime=4;
-  }
-
-});
-
-$(function FirstTimeNo()
-{
   
-  var FirstTime=0;
-}
+  else if(FirstTime==1)
+  {
+  $("#example2").popover('show');
+   
+  FirstTime=2;
+  }
+  else if(FirstTime==2)
+  {
+     $("#example3").popover('show');
+  FirstTime=3;
+  }
+  else if(FirstTime==3)
+  {
+    $("#example4").popover('show');
+     
+  FirstTime=4;
+  }
+  
 
+
+}
+function FirstTimeNo(){
+  FirstTime=4;
+}
 </script>
 
   </body>
