@@ -1,0 +1,50 @@
+﻿
+/* featured 
+----------------------------------------------------------*/
+.featured {
+    background-color: @page-color;
+    position: relative;
+    margin: 0;
+
+	.content-wrapper {
+		background-color: @gradient-color;
+		background-image: -ms-linear-gradient(left, @gradient-color 0% lightness(@gradient-color, 10%) 100%);
+		background-image: -o-linear-gradient(left, @gradient-color 0%, lightness(@gradient-color, 10%) 100%);
+		background-image: -webkit-gradient(linear, left top, right top, color-stop(0, @gradient-color), color-stop(1, lightness(@gradient-color, 10%)));
+		background-image: -webkit-linear-gradient(left, @gradient-color 0%, lightness(@gradient-color, 10%) 100%);
+		background-image: linear-gradient(left, @gradient-color 0%, lightness(@gradient-color, 10%) 100%);
+		color: #3e5667;
+		padding: 20px 40px;
+
+        position: inherit;
+        top: 0;
+	}
+
+	p { font-size: 1.1em; }
+	.title h1, .title h2 { color: @page-color; }
+
+	nav {
+		border-top: 1px solid lightness(@gradient-color, -5);
+		text-align: center;
+		cursor: default;
+
+		position: absolute;
+		bottom: 20px;
+		left: 40px;
+		right: 40px;
+
+		/*font-size: 24px;*/
+		font-size: 1.75em;
+
+		a.active, a:hover {
+			font-size: 24px;
+			color: @page-color;
+			text-decoration: none;
+		}
+
+		a:active {
+			background: transparent;
+			color: lightness(@gradient-color, -10);
+		}
+	}
+}

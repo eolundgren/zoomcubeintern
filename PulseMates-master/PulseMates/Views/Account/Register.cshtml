@@ -1,0 +1,46 @@
+﻿@model PulseMates.Models.RegisterModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="float-left">
+<div class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Create a new account.</h2>
+</div>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Registration Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ConfirmPassword)
+                @Html.PasswordFor(m => m.ConfirmPassword)
+            </li>
+        </ol>
+        <input type="submit" value="Register" />
+    </fieldset>
+}
+</div>
+<section class="float-right" id="socialLoginForm">
+    <div class="title">
+        <h1>@ViewBag.Title.</h1>
+        <h2>Use another service to log in.</h2>
+    </div>
+    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

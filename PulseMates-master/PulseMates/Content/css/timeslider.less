@@ -1,0 +1,61 @@
+﻿
+.shadow (@xAxis, @yAxis, @blur, @spread, @color) {
+    -moz-box-shadow: inset @xAxis @yAxis @blur @spread @color;
+    -webkit-box-shadow: inset @xAxis @yAxis @blur @spread @color;
+    box-shadow: inset @xAxis @yAxis @blur @spread @color;
+}
+
+.timeslider {
+    position: relative;
+    border-right: 1px solid #dfdfdf;
+
+    .cursor {
+        position: absolute;
+        top: 50px;
+        right: -1px;
+        width: 100px;
+        height: 10px;
+        background: @color-base-blue; //rgba(91, 141, 211, .9); //
+        .shadow(-25px, 0, 0, 0, rgba(255, 255, 255, .1));
+        z-index: 30;
+        cursor: pointer;
+        border: 1px solid #dfdfdf;
+    }
+
+    .background {
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        bottom: 1px;
+        top: 0px;
+        z-index: 20;
+        
+        background-color: #f9f9f9;
+        .shadow(-25px, 0, 0, 0, rgba(255, 255, 255, .05));
+
+        border-right: 1px solid white;
+    }
+
+    .upper, .lower {
+        z-index: 30;
+        color: @color-base-slateGray;
+        position: relative;
+        
+        margin: 0em .2em;
+        padding: .5em 0em;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .upper {
+        border-bottom: 1px solid #dfdfdf;
+    }
+
+    .lower {
+        border-top: 1px solid #dfdfdf;
+    }
+
+    .section {
+        height: 256px;
+    }
+}

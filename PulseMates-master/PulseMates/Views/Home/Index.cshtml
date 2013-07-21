@@ -1,0 +1,51 @@
+﻿
+<div class="span1">
+    
+</div>
+
+<div class="span11">    
+    <div class="mosaic-container clearfix" data-bind="mosaic: { tiles: items, template: 'mosaic-tile-template' }">
+    </div>
+</div>
+
+
+<div id="map-toggle">
+    <i class="icon-map-marker icon-white"></i><a href="#map-toggle" id="Tab" class="input-block-level" type="text" data-trigger="manual" data-placement="top" data-content="Click here to show the map with locations of where the pictures were taken." onclick="Tutorial5();"><span class=" text">Show on map</span></a>
+</div>
+
+<div id="map-canvas" style="visibility: hidden">
+    <div style="height: 100%; width: 100%; position: relative" data-bind="googleMap: { markers: markers }"></div>
+</div>
+
+@section scripts {
+
+    @Scripts.Render("~/bundles/home/index")
+
+    <script id="mosaic-tile-template" type="text/html">
+
+        <li>
+            <a class="thumbnail" href="#" data-bind="preview: { template: 'preview-template' }">
+                <img data-bind="attr: { 'src': '/api/item/' + id + '?format=image&size=small' }" />
+            </a>
+            @*<div class="thumbnail-action">
+                <button class="btn btn-mini" data-bind="click: $root.currentItem"><i class="icon-edit"></i> Edit</button>
+            </div>*@
+        </li>
+
+    </script>
+
+    <script id ="preview-template" type="text/html">
+
+        <div class="span3 offset1">
+            <img style="height: 450px; text-align: center; padding-top: 25px" data-bind="attr: { 'src': '/api/item/' + id + '?format=image&size=small' }" />
+        </div>
+
+        <div class="span5 offset1">
+
+            <h1>Hello, Preview</h1>
+
+        </div>
+
+    </script>
+
+}

@@ -1,0 +1,64 @@
+﻿@model PulseMates.Models.DatasetModel
+@{
+    var formUrl = "/api/datasource/" + ViewBag.Id;
+}
+@Html.TitleFor()
+@Html.Hidden("datasource-id", (string)ViewBag.Id)
+
+<form id="participate-edit" action="@formUrl" method="post">
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>DatasetModel</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%">Name</th>
+                    <th style="width: 45%">Usage</th>
+                    <th style="width: 10%">Required</th>
+                    <th style="width: 10%">Type</th>
+                    <th style="width: 10%"></th>
+                </tr>
+            </thead>
+            <tbody>
+            @for(var i = 0; i < Model.Definitions.Count(); i++)
+            {
+                <tr>
+                    <td>@Html.TextBoxFor(x => Model.Definitions[i].Name)</td>
+                    <td>@Html.TextBoxFor(x => Model.Definitions[i].Usage)</td>
+                    <td class="center">@Html.CheckBoxFor(x => Model.Definitions[i].Required)</td>
+                    <td>@Html.DropDownListFor(x => Model.Definitions[i].TypeName, new SelectList(ViewBag.DefinitionTypes, Model.Definitions[i].TypeName))</td>
+                    <td class="right">@Html.HiddenFor(x => Model.Definitions[i].Id)<a href="#del-row">Remove</a></td>
+                </tr>
+            }
+            </tbody>
+        </table>
+
+        <a href="#add-row">Add Row</a>
+
+        <p>
+            <input type="submit" value="Save" />
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </fieldset>
+</form>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/participate-edit")
+}

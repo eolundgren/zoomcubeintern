@@ -1,0 +1,113 @@
+﻿@Html.TitleFor()
+
+<div class="row-fluid">
+
+    <div class="span2">
+
+        <ul data-bind="foreach: pages">
+            <li><a href="#openPage" data-bind="text: name, click: $parent.currentPage"></a></li>
+        </ul>
+
+        <button class="btn btn-primary" data-bind="click: newPage">
+            <i class="icon-file icon-white"></i> New Page
+        </button>
+
+    </div>
+
+    <div class="span10">
+
+        <!-- ko with: currentPage -->
+
+        <div class="title">
+            <h1 data-bind="text: name"></h1>
+            <h2 data-bind="text: description"></h2>
+        </div>
+        <hr />
+
+        <!-- /ko -->
+
+        <div data-bind="mosaic: { tiles: items, template: 'mosaic-tile-template' }"></div>
+
+    </div>
+
+    <div class="modal hide fade" data-bind="modal: { viewModel: editingPage, template: 'new-page-template' }">
+    </div>
+
+</div>
+
+@section scripts {
+
+    
+    @Scripts.Render("~/bundles/demo/page")
+
+    <script id="mosaic-tile-template" type="text/html">
+
+        <li>
+            <a class="thumbnail" href="#" id="Tile1" data-toggle="popover" data-trigger="manual" rel="popover" data-content="Here is your result. Click on the image to show more information about it." onclick="Tutorial3()" data-bind="colorbox: { href: '/api/item/' + id + '?format=image', rel: 'thumbnail' }">
+                <img data-bind="attr: { 'src': '/api/item/' + id + '?format=image&size=small' }" />
+            </a>
+            @*
+             
+            
+            <div class="thumbnail-action">
+                <button class="btn btn-mini" data-bind="click: $root.currentItem"><i class="icon-edit"></i> Edit</button>
+            </div>*@
+        </li>
+
+    </script>
+
+    <script id="new-page-template" type="text/html">
+
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>New Page</h3>
+        </div>
+        <div class="modal-body">
+
+            <form class="form-horizontal">
+                <!-- title -->
+                <div class="control-group">
+                    <label class="control-label" for="inputTitle">Title</label>
+                    <div class="controls">
+                        <input type="text" id="inputTitle" data-bind="value: name" placeholder="Title">
+                    </div>
+                </div>
+                <!-- description -->
+                <div class="control-group">
+                    <label class="control-label" for="inputDesc">Description</label>
+                    <div class="controls">
+                        <input type="text" id="inputDesc" data-bind="value: description" placeholder="Description">
+                    </div>
+                </div>
+                <!-- tags -->
+                <div class="control-group">
+                    <label class="control-label" for="inputTags">Tags</label>
+                    <div class="controls">
+                        <input type="text" id="inputTags" placeholder="Tags" data-bind="enter: addTag, event: { blur: addTag }">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        
+                        <ul style="margin: 0;" class="inline" data-bind="foreach: tags">
+                            <li style="margin: 0 5px 5px 0; padding: 0">
+                                <button class="btn btn-success" data-bind="click: $parent.removeTag.bind($parent, $parent, $data)">
+                                    <i class="icon-remove-sign icon-white"></i>
+                                    &nbsp;<!--ko text: $data--><!--/ko-->
+                                </button>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="modal-footer">
+            <a href="#" id="CloseBox1" data-toggle="popover" data-trigger="manual" rel="popover" data-content="Click this to close this box." data-placement="left" onclick="Tutorial4()"  data-dismiss="modal" class="btn">Close</a>
+            <a href="#" class="btn btn-primary" data-bind="click: $root.saveChanges.bind($root, $data)">Save changes</a>
+        </div>
+
+    </script>
+
+}

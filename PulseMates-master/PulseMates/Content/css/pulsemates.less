@@ -1,0 +1,457 @@
+﻿@import "grid.less";
+
+
+
+/* 
+----------------------------------------------------------*/
+html {
+    background-color: @footer-color;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: @page-color;
+    border-top: solid 15px @border-color;
+    color: @text-color;
+    font-size: .85em;
+    font-family: @text-font;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: @text-color;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.75em; }
+h3 { font-size: 1.2em; }
+h4 { font-size: 1.1em; }
+h5, h6 { font-size: 1em; }
+
+a {
+    color: @link-color;
+    outline: none;
+    padding: 0px 3px;
+    text-decoration: none;
+
+	&:link, &:visited, &:active, &:hover { color: @link-color; }
+	&:hover { text-decoration: underline; }
+}
+
+ul.inline, ol.inline {
+	
+    padding: 0;
+	margin: 0;
+
+	li {
+		list-style: none;
+		display: block;
+		padding: .2em .2em .2em 0;
+        float: left;
+
+	}
+
+    .clearfix;
+}
+
+/* main layout
+----------------------------------------------------------*/
+.content-wrapper {
+    margin: 0 auto;
+    max-width: 960px;
+}
+
+.main-content {
+	padding: 15px 0px;
+	.clearfix;
+}
+
+header {
+	padding-top: 5px; 
+	background: lightness(@footer-color, 8%);
+	border-bottom: 8px solid lightness(@footer-color, 6%);
+
+	.clearfix;
+}
+
+footer {
+	padding: 1em 0;
+    clear: both;
+	border-top: solid 15px lightness(@footer-color, -4%);
+    background-color: @footer-color;
+    font-size: .8em;
+
+	p {
+		text-align: right;
+		padding: 0;
+		margin: 0;
+	}
+
+	.clearfix;
+}
+
+article { .column(9); }
+aside { .column(3); }
+
+.float-left { .column(6); }
+.float-right { .column(6); }
+
+/* site title
+----------------------------------------------------------*/
+.site-title {
+	padding: .5em 0em;
+
+    font-family: @title-font;
+    font-size: 2.3em;
+    margin: 0;
+}
+
+.site-title a, .site-title a:hover, .site-title a:active {
+    background: none;
+    outline: none;
+    text-decoration: none;
+	color: @title-color;
+}
+
+/* featured 
+----------------------------------------------------------*/
+.featured {
+    background-color: @page-color;
+
+	.content-wrapper {
+		background-color: @gradient-color;
+		background-image: -ms-linear-gradient(left, @gradient-color 0% lightness(@gradient-color, 10%) 100%);
+		background-image: -o-linear-gradient(left, @gradient-color 0%, lightness(@gradient-color, 10%) 100%);
+		background-image: -webkit-gradient(linear, left top, right top, color-stop(0, @gradient-color), color-stop(1, lightness(@gradient-color, 10%)));
+		background-image: -webkit-linear-gradient(left, @gradient-color 0%, lightness(@gradient-color, 10%) 100%);
+		background-image: linear-gradient(left, @gradient-color 0%, lightness(@gradient-color, 10%) 100%);
+		color: #3e5667;
+		padding: 20px 40px;
+
+		min-height: 250px;
+		position: relative;
+	}
+
+	p { font-size: 1.1em; }
+	.title h1, .title h2 { color: @page-color; }
+
+	nav {
+		border-top: 1px solid lightness(@gradient-color, -5);
+		text-align: center;
+		cursor: default;
+
+		position: absolute;
+		bottom: 20px;
+		left: 40px;
+		right: 40px;
+
+		/*font-size: 24px;*/
+		font-size: 1.75em;
+
+		a.active, a:hover {
+			font-size: 24px;
+			color: @page-color;
+			text-decoration: none;
+		}
+
+		a:active {
+			background: transparent;
+			color: lightness(@gradient-color, -10);
+		}
+	}
+}
+
+.title {
+	h1, h2, h3, h4, h5, h6 { display: inline; }
+	h1, h3, h5 { color: @text-color; }
+	h2, h4, h6 { font-weight: normal; color: lightness(@text-color, 10%); }
+}
+
+/* menu
+----------------------------------------------------------*/
+ul#menu {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin: 25px 0 4px;
+    padding: 0;
+    text-align: right;
+
+	font-family: @text-font;
+
+	li {
+		&:hover a { color: @text-color; text-decoration: none; }
+		a { color: @title-color; }
+	}
+}
+
+/* toolbar 
+----------------------------------------------------------*/
+.toolbar {
+	float: right;
+	position: relative;
+
+	a { 
+		border: 1px solid #fff;
+		padding: 2px 5px;
+
+		&:hover{
+			z-index: 1000;
+			/*border: 1px solid red; lightness(@footer-color, -4%);
+			border-bottom: 1px solid @footer-color;*/
+			background: lightness(@footer-color, 8%);	
+			text-decoration: none;
+		}
+	}
+}
+
+.toolbar-content{
+	div {
+		z-index: 0;
+		position: absolute;
+		display: none;
+		min-width: 450px;
+		/*border: 1px solid red; lightness(@footer-color, -4%);*/
+		background: lightness(@footer-color, 8%);	
+		padding: 15px 25px;
+	}
+}
+
+
+/* login
+----------------------------------------------------------*/
+
+#login {
+    display: block;
+    font-size: .85em;
+    margin: 0 0 10px;
+    text-align: right;
+
+	form { display: inline; }
+
+	a.username {
+		background: none;
+		margin: 0;
+		padding: 0;
+		text-decoration: underline;
+	}
+}
+
+/* forms layout
+----------------------------------------------------------*/
+
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+
+	legend { display: none; }
+
+	ol {
+		padding: 0;
+		list-style: none;
+		li { padding-bottom: 5px; .clearfix; }
+	}
+
+	.inline {
+		color: @text-color;
+		font-size: .85em;
+
+		li { padding: 0; }
+
+		label { display: inline-block; width: 125px; font-weight: normal; }
+		span { font-weight: bold; }
+	}
+}
+
+label {
+    display: block;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+label.checkbox {
+    display: inline;
+}
+
+input, textarea {
+    border: 1px solid @footer-color;
+    background: @page-color;
+    color: @text-color;
+    font-size: 1.2em;
+    margin: 5px 0 6px 0;
+    padding: 5px;
+    width: 300px;
+}
+
+textarea {
+    font-family: inherit;
+    width: 500px;
+}
+
+input:focus, textarea:focus {
+    border: 1px solid @validation-succes-color;
+}
+
+input[type="checkbox"] {
+    background: transparent;
+    border: inherit;
+    width: auto;
+}
+
+input[type="submit"],
+input[type="button"],
+button,
+.button {
+    background-color: #d3dce0;
+    border: 1px solid #787878;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: 600;
+    padding: 7px;
+    margin-right: 8px;
+    width: auto;
+
+	color: @text-color;
+	
+	&:hover { text-decoration: none; }
+}
+
+td input[type="submit"],
+td input[type="button"],
+td button {
+    font-size: 1em;
+    padding: 4px;
+    margin-right: 4px;
+}
+
+/* tables
+----------------------------------------------------------*/
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-top: 0.75em;
+    border: 0 none;
+	width: 100%;
+	
+	input[type="text"], textarea { width: 100%; }
+}
+
+th {
+    font-size: 1.2em;
+    text-align: left;
+    border: none 0px;
+    padding-left: 0;
+
+	a {
+        display: block;
+        position: relative;
+
+		&:link, &:visited, &:active, &:hover {
+			color: #333;
+			font-weight: 600;
+			text-decoration: none;
+			padding: 0;
+		}
+		
+		&:hover { color: #000; }
+    }
+
+	&.asc a, &.th desc a { margin-right: .75em; }
+	&.asc a:after, &.desc a:after {
+        display: block;
+        position: absolute;
+        right: 0em;
+        top: 0;
+        font-size: 0.75em;
+    }
+	&.asc a:after { content: '▲'; }
+    &.desc a:after { content: '▼'; }
+}
+
+td {
+    padding: 0.25em 2em 0.25em 0em;
+    border: 0 none;
+
+	&.center { text-align: center; }
+	&.right { text-align: right; }
+}
+
+tr.pager td {
+    padding: 0 0.25em 0 0;
+}
+
+/* info and errors
+----------------------------------------------------------*/
+.message-info {
+    border: 1px solid;
+    clear: both;
+    padding: 10px 20px;
+}
+
+.message-error {
+    clear: both;
+    color: @validation-error-color;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 20px 0 10px 0;
+}
+
+.message-success {
+    color: @validation-succes-color;
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 20px 0 10px 0;
+}
+
+.error { color: @validation-error-color; }
+.required { 
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	background-color: @validation-error-color;
+	margin-top: 8px;
+	color: #fff;
+}
+
+.usage, 
+.usage-message {
+	font-size: 1.2em;
+	font-weight: bold;
+	color: @page-color;
+	background: @text-color;
+	padding: 0.1em 0.5em;
+	cursor: default;
+}
+.usage-message { 
+	font-size: 1em;
+	font-weight: normal;
+	padding: 0.5em 1em;
+
+	max-width: 250px;
+	/**/
+}
+
+/* styles for validation helpers
+----------------------------------------------------------*/
+.field-validation-error { color: @validation-error-color; font-weight: bold; }
+
+.field-validation-valid { display: none; }
+
+input.input-validation-error { border: 1px solid @validation-error-color; }
+
+input[type="checkbox"].input-validation-error { border: 0 none; }
+
+.validation-summary-errors {
+    color: @validation-error-color;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.validation-summary-valid { display: none; }
+
+@import "mobile.less";

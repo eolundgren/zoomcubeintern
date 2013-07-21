@@ -1,0 +1,95 @@
+﻿@Html.TitleFor()
+
+<ul class="mosaic-container thumbnails clearfix" data-bind="foreach: itemsOnPage" >
+
+    <li class="span2"> @*  data-bind="tooltip: { title: tooltip, html: true },  *@
+        <a class="thumbnail" href="#" data-bind="colorbox: { href: imageUrl, rel: 'thumbnail' }">
+            <img data-bind="attr: { 'src': thumbnailUrl }" />
+        </a>
+        <div class="thumbnail-action">
+            <button class="btn btn-mini" data-bind="click: $root.currentItem"><i class="icon-edit"></i> Edit</button>
+            @*&nbsp;
+            <button class="btn btn-mini" data-bind="click: $root.deleteItem.bind($root, $data)"><i class="icon-remove"></i> Delete</button>*@
+        </div>
+    </li>
+
+</ul>
+
+<div class="pagination pagination-centered">
+    <ul data-bind="foreach: ko.utils.range(0, maxPageIndex)">
+        <li data-bind="css: { 'active': $data == $root.currentPageIndex() }">
+            <a href="#" data-bind="text: $data + 1, click: function () { $root.currentPageIndex($data) }"></a>
+        </li>
+    </ul>
+</div>
+
+<hr />
+
+<ul class="inline clearfix" data-bind="foreach: tags">
+    <li>
+        <input type="checkbox" data-bind="checked: $parent.selectedTags, attr: { value: name }" />
+        <span data-bind="text: name"></span>&nbsp;|&nbsp;
+    </li>
+</ul>
+
+<div class="modal hide fade" data-bind="modal: { viewModel: currentItem, template: 'edit-item-template' }">
+</div>
+
+@section scripts {
+
+    @Scripts.Render("~/bundles/demo/grid")
+
+    <script id="edit-item-template" type="text/html">
+
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 data-bind="text: name"></h3>
+        </div>
+        <div class="modal-body">
+
+            <form class="form-horizontal">
+                <!-- title -->
+                <div class="control-group">
+                    <label class="control-label" for="inputTitle">Title</label>
+                    <div class="controls">
+                        <input type="text" id="inputTitle" data-bind="value: inputName" placeholder="Title">
+                    </div>
+                </div>
+                <!-- description -->
+                <div class="control-group">
+                    <label class="control-label" for="inputDesc">Description</label>
+                    <div class="controls">
+                        <input type="text" id="inputDesc" data-bind="value: inputDesc" placeholder="Description">
+                    </div>
+                </div>
+                <!-- tags -->
+                <div class="control-group">
+                    <label class="control-label" for="inputTags">Tags</label>
+                    <div class="controls">
+                        <input type="text" id="inputTags" placeholder="Tags" data-bind="enter: addTag, event: { blur: addTag }">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        
+                        <ul style="margin: 0;" class="inline" data-bind="foreach: inputTags">
+                            <li style="margin: 0 5px 5px 0; padding: 0">
+                                <button class="btn btn-success" data-bind="click: $parent.removeTag.bind($parent, $parent, $data)">
+                                    <i class="icon-remove-sign icon-white"></i>
+                                    &nbsp;<!--ko text: $data--><!--/ko-->
+                                </button>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="modal-footer">
+            <a href="#" data-dismiss="modal" id="CloseBox2" data-toggle="popover" data-trigger="manual" rel="popover" data-content="Click this to close this box." data-placement="left" onclick="Tutorial4()" class="btn">Close</a>
+            <a href="#" class="btn btn-primary" data-bind="click: $root.saveChanges.bind($root, $data)">Save changes</a>
+        </div>
+
+    </script>
+}

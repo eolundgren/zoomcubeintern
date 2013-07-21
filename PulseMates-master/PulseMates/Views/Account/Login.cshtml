@@ -1,0 +1,49 @@
+﻿@model PulseMates.Models.LoginModel
+
+@{
+    ViewBag.Title = "Log in";
+}
+
+<section class="float-left" id="loginForm">
+<div class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Use a local account to log in.</h2>
+</div>
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Log in Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+            </li>
+            <li>
+                @Html.CheckBoxFor(m => m.RememberMe)
+                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+            </li>
+        </ol>
+        <input type="submit" value="Log in" />
+    </fieldset>
+    
+    <p>@Html.ActionLink("Register", "Register") if you don't have an account.</p>
+}
+</section>
+
+<section class="float-right" id="socialLoginForm">
+    <div class="title">
+        <h1>@ViewBag.Title.</h1>
+        <h2>Use another service to log in.</h2>
+    </div>
+    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

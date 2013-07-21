@@ -1,0 +1,69 @@
+﻿@model PulseMates.Models.Storage.DataSource
+
+<article id="participate">
+
+    @Html.TitleFor()
+
+    @Html.HiddenFor(x => x.Id, new { id = "datasource-id" })
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+            @foreach (var param in Model.Parameters) {
+                <th>@param.Name</th>
+            }
+                <th></th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: items">
+            <tr>
+                <td data-bind="text: id"></td>
+            @foreach (var param in Model.Parameters) {
+                <td data-bind="template: { name: 'display-for-@param.TypeName.ToLower()', data: @param.Name }">
+                </td>
+            }
+            </tr>
+        </tbody>
+    </table>
+
+</article>
+
+<aside>
+
+    <ul>
+        <li><a href="@Url.Action("Upload", new { id = Model.Id })">Upload</a></li>
+        <li><a href="@Url.Action("Facebook", new { id = Model.Id })">Facebook</a></li>
+    </ul>
+
+    <hr />
+    <ul>
+        <li><a href="@Url.Action("Edit", new { id = Model.Id })">Edit</a></li>
+    </ul>
+</aside>
+
+<script id="display-for-string" type="text/html">
+    <span data-bind="text: Value"></span>
+</script>
+
+<script id="display-for-image" type="text/html">
+    <img data-bind="attr: { src: Value.Url, alt: Value.Filename }" style="max-height: 200px; max-width: 200px;" /> 
+</script>
+
+<script id="display-for-location" type="text/html">
+    <span data-bind="text: Value"></span>
+</script>
+
+<script id="display-for-address" type="text/html">
+    <span data-bind="text: Value"></span>
+</script>
+
+<script id="display-for-date" type="text/html">
+    <span data-bind="text: Value"></span>
+</script>
+
+@section Scripts {
+    <script src="http://dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0" type="text/javascript"></script>
+    @Scripts.Render("~/bundles/participate")
+}
+

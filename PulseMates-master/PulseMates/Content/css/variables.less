@@ -1,0 +1,130 @@
+﻿/* Resource declation
+----------------------------------------------------------*/
+@color-base-red: #f63a39;
+@color-base-orange: #ff793d;
+@color-base-yellow: #ffc84e;
+@color-base-green: #71bc4e;
+@color-base-gray: #505050;
+@color-base-turquoise: #00bcce;
+@color-base-blue: #5b8dd3;
+@color-base-purple: #b776bb;
+@color-base-pink: #f56098;
+@color-base-slateGray: #748288;
+
+
+@difference: 10%; // Difference (in perecent) between each shade
+
+// Red Shades
+@color-shade1-red: lighten(@color-base-red, (@difference * 2));
+@color-shade2-red: lighten(@color-base-red, @difference);
+@color-shade3-red: @color-base-red;
+@color-shade4-red: darken(@color-base-red, @difference);
+@color-shade5-red: darken(@color-base-red, (@difference * 2));
+
+@difference: 20%;
+@color-shade1-gray: lighten(@color-base-gray, (@difference * 2));
+@color-shade2-gray: lighten(@color-base-gray, @difference);
+@color-shade3-gray: @color-base-gray;
+@color-shade4-gray: darken(@color-base-gray, @difference);
+@color-shade5-gray: darken(@color-base-gray, (@difference * 2));
+    
+
+// Tetradic
+  @distance4: 90; // Degrees between two closest colors
+  @tetrad1: @color-base-blue;
+  @tetrad2: spin(@color-base-blue, @distance4);
+  @tetrad3: spin(@color-base-blue, 180);
+  @tetrad4: spin(@color-base-blue, (180 + @distance4));
+
+
+@text-color: #333;
+@text-font: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+
+@title-color: #999;
+@title-font: Rockwell, Consolas, "Courier New", Courier, monospace;
+
+@link-color: #2086BF;
+@link-hover-color: #2086BF;
+
+@footer-color: #e2e2e2;
+@page-color: #fff;
+
+@border-color: @color-base-gray;
+
+@gradient-color: #7ac0da;
+
+@validation-error-color: #e80c4d;
+@validation-succes-color: #7ac0da;
+
+.red1 {
+    background: @color-shade1-red;
+}
+.red2 {
+    background: @color-shade2-red;
+}
+
+.red, .red3 {
+    background: @color-shade3-red;
+}
+
+.red4 {
+    background: @color-shade4-red;
+}
+
+.red5 {
+    background: @color-shade5-red;
+}
+/*----*/
+
+.gray1 {
+    background: @color-shade1-gray;
+}
+.gray2 {
+    background: @color-shade2-gray;
+}
+
+.gray, .gray3 {
+    background: @color-shade3-gray;
+}
+
+.gray4 {
+    background: @color-shade4-gray;
+}
+
+.gray5 {
+    background: @color-shade5-gray;
+}
+
+/*----*/
+
+.orange {
+    background: @color-base-orange;
+}
+
+.yellow {
+    background: @color-base-yellow;
+}
+
+.green {
+    background: @color-base-green;
+}
+
+.turquoise {
+    background: @color-base-turquoise;
+}
+
+.blue {
+    background: @color-base-blue;
+}
+
+.purple {
+    background: @color-base-purple;
+}
+
+.pink {
+    background: @color-base-pink;
+}
+
+.slateGray {
+    background: @color-base-slateGray;
+}

@@ -1,0 +1,23 @@
+﻿@Html.TitleFor()
+
+<div style="height: 500px" data-bind="googleMap: { markers: markers }"></div>
+
+
+<div id="map" style="height: 100%; width: 100%">
+
+    
+
+</div>
+
+
+@section scripts {
+    
+    <script src='http://api.tiles.mapbox.com/mapbox.js/v1.1.0/mapbox.js'></script>
+
+    <script type='text/javascript'>
+        var map = L.mapbox.map('map', 'examples.map-y7l23tes').setView([37.9, -77], 5);
+    </script>
+
+    @Scripts.Render("~/bundles/demo/map")
+
+}

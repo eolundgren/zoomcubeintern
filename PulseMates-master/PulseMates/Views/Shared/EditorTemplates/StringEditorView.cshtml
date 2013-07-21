@@ -1,0 +1,18 @@
+﻿@model PulseMates.Models.Storage.DataSourceParameterValue<string>
+
+<label>@Model.Name</label>
+
+@if (Model.Required)
+{
+    <input type="text" name="@Model.Name" value="@Model.Value" class="editor-for-address" data-val="true" data-val-required="@Model.Name is required" />
+}
+else
+{
+    <input type="text" name="@Model.Name" value="@Model.Value" class="editor-for-address" />
+}
+
+@if (!string.IsNullOrEmpty(Model.Usage))
+{
+    <span class="usage">?</span>
+    <div class="usage-message" style="display: none">@Model.Usage</div>
+}

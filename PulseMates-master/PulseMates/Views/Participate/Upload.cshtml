@@ -1,0 +1,30 @@
+﻿@model PulseMates.Models.Storage.DataSourceValue
+@{
+    var formUrl = "/api/datasource/" + ViewBag.Id + "/value";
+}
+@Html.TitleFor()
+
+<form id="participate-upload" action="@formUrl" method="post" enctype="multipart/form-data">
+
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend></legend>
+        
+        <ol>
+        @foreach(var def in Model.Values) {
+            <li>@Html.EditorFor(x => def, def.TypeName + "EditorView")</li>
+        }
+        </ol>
+
+        <input type="submit" value="Save" />
+        @Html.ActionLink("Back to List", "Index", new { id = ViewBag.Id })
+    </fieldset>
+</form>
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/participate-upload")
+    <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+}

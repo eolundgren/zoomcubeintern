@@ -1,0 +1,47 @@
+﻿<div class="row">
+
+    <div class="span1">
+
+        <div data-bind="timeslider: { marks: distinctGroups, upper: upperBound, lower: lowerBound, increment: increment }">
+        </div>
+
+    </div>
+
+    <div class="span11">
+        @Html.TitleFor()
+
+        @*<ul data-bind="foreach: content" class="mosaic-container">
+            <li>
+                <div class="cleafix" data-bind="mosaic: { tiles: nodes, template: 'mosaic-tile-template' }">
+                </div>
+            </li>
+        </ul>*@
+
+    </div>
+
+</div>
+
+@section scripts {
+
+    @Scripts.Render("~/bundles/demo/timeslider")
+
+    <script id="timeslider-template" type="text/html">
+
+
+
+    </script>
+
+    <script id="mosaic-tile-template" type="text/html">
+
+        <li>
+            <a class="thumbnail" href="#" data-bind="colorbox: { href: '/api/item/' + id + '?format=image', rel: 'thumbnail' }">
+                <img data-bind="attr: { 'src': '/api/item/' + id + '?format=image&size=small' }" />
+            </a>
+            @*<div class="thumbnail-action">
+                <button class="btn btn-mini" data-bind="click: $root.currentItem"><i class="icon-edit"></i> Edit</button>
+            </div>*@
+        </li>
+
+    </script>
+    
+}

@@ -29,6 +29,8 @@
                     <link rel="apple-touch-icon-precomposed" href="../../assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="../../assets/ico/favicon.png">
                                    
+                                   <div><input href="#" id="search" class="input-block-level" type="text" data-trigger="manual" data-bind="search: searchQuery" data-placement="bottom" data-content="Hey, now click this one."
+                                    ></div>
 
 
 
@@ -62,26 +64,26 @@
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="FirstTimeNo();">No</button>
-    <button class="btn btn-primary" data-dismiss="modal" onclick="FirstTimeProcess();">Yes</button>
+    <button class="btn btn-primary" data-dismiss="modal" onclick="Tutorial1();">Yes</button>
   </div>
 </div>
 <div>  
-<a href="#" id="example1" class="btn btn-danger" data-toggle="popover" rel="popover" data-content="You click buttons like this to do things. It's pretty cool." onclick="FirstTimeProcess();" data-original-title="">Tutorial 1</a>  
+<a href="#" id="example1" class="btn btn-danger" data-toggle="popover" data-trigger="manual"  rel="popover" data-content="You click buttons like this to do things. It's pretty cool." onclick="Tutorial2();" data-original-title="">Tutorial 1</a>  
 </div>  
 <br>
     <br>
 <div>  
-<a href="#" id="example2" class="btn btn-danger" data-toggle="popover" rel="popover" data-content="Hey, now click this one." onclick="FirstTimeProcess();" data-original-title="">Tutorial 2</a>  
+<a href="#" id="example2" class="btn btn-danger" data-toggle="popover" data-trigger="manual" rel="popover" data-content="Hey, now click this one." onclick="Tutorial3();" data-original-title="">Tutorial 2</a>  
 </div>  
 <br>
     <br>
 <div>  
-<a href="#" id="example3" class="btn btn-danger" data-toggle="popover" rel="popover" data-content="Now do this one." onclick="FirstTimeProcess();" data-original-title="">Tutorial 3</a>  
+<a href="#" id="example3" class="btn btn-danger" data-toggle="popover" data-trigger="manual" rel="popover" data-content="Now do this one." onclick="Tutorial4();" data-original-title="">Tutorial 3</a>  
 </div>  
 <br>
     <br>
 <div>  
-<a href="#" id="example4" class="btn btn-danger" data-toggle="popover" rel="popover" data-content="This one is pretty cool too." data-original-title="">Tutorial 4</a>  
+<a href="#" id="example4" class="btn btn-danger" data-toggle="popover" data-trigger="manual" rel="popover" data-content="This one is pretty cool too."  onclick="Tutorial5()" data-original-title="">Tutorial 4</a>  
 </div>  
 <div>  
   <br>
@@ -128,39 +130,63 @@ jQuery(function ($) {
 
 var FirstTime=0;
                                    
-function FirstTimeProcess()
+function Tutorial1()
 {
-
   if(FirstTime==0)
   {
     
     $("#example1").popover('show');
   FirstTime=1;
   }
-  
-  else if(FirstTime==1)
+}
+
+function Tutorial2()
+{
+  if(FirstTime==1)
   {
+  $("#example1").popover('hide');
   $("#example2").popover('show');
    
   FirstTime=2;
   }
-  else if(FirstTime==2)
+}
+
+function Tutorial3()
+{ 
+  if(FirstTime==2)
   {
-     $("#example3").popover('show');
+    $("#example2").popover('hide');
+    $("#example3").popover('show');
   FirstTime=3;
   }
-  else if(FirstTime==3)
+}
+
+function Tutorial4()
+{ 
+  if(FirstTime==3)
   {
+    $("#example3").popover('hide');
     $("#example4").popover('show');
      
   FirstTime=4;
   }
-  
-
-
 }
+function Tutorial5()
+{ 
+  if(FirstTime==4)
+  {
+    
+    $("#example4").popover('hide');
+     $("#search").popover('show');
+  FirstTime=5;
+  }
+}
+
+
+
 function FirstTimeNo(){
-  FirstTime=4;
+  FirstTime=5;
+  
 }
 </script>
 

@@ -1,0 +1,80 @@
+﻿@Html.TitleFor()
+
+<div class="row-fluid">
+
+    <div class="span2">
+
+        <button class="btn btn-primary" data-bind="click: newEvent">
+            <i class="icon-book icon-white"></i> New Event
+        </button>
+
+    </div>
+
+    <div class="span10">
+
+
+    </div>
+
+    <div class="modal fade hide" data-bind="modal: { template: 'new-event-template', viewModel: editingEvent }">
+    </div>
+
+</div>
+
+@section scripts {
+
+    @Scripts.Render("~/bundles/demo/event");
+
+    <script id="new-event-template" type="text/html">
+
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>New Event</h3>
+        </div>
+        @*<div class="modal-body">
+
+            <form class="form-horizontal">
+                <!-- title -->
+                <div class="control-group">
+                    <label class="control-label" for="inputTitle">Title</label>
+                    <div class="controls">
+                        <input type="text" id="inputTitle" data-bind="value: name" placeholder="Title">
+                    </div>
+                </div>
+                <!-- description -->
+                <div class="control-group">
+                    <label class="control-label" for="inputDesc">Description</label>
+                    <div class="controls">
+                        <input type="text" id="inputDesc" data-bind="value: description" placeholder="Description">
+                    </div>
+                </div>
+                <!-- tags -->
+                <div class="control-group">
+                    <label class="control-label" for="inputTags">Tags</label>
+                    <div class="controls">
+                        <input type="text" id="inputTags" placeholder="Tags" data-bind="enter: addTag, event: { blur: addTag }">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        
+                        <ul style="margin: 0;" class="inline" data-bind="foreach: tags">
+                            <li style="margin: 0 5px 5px 0; padding: 0">
+                                <button class="btn btn-success" data-bind="click: removeTag.bind($parent, $parent, $data)">
+                                    <i class="icon-remove-sign icon-white"></i>&nbsp;<!--ko text: $data--><!--/ko-->
+                                </button>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="modal-footer">
+            <a href="#" data-dismiss="modal" class="btn">Close</a>
+            <a href="#" class="btn btn-primary" data-bind="click: $root.saveChanges.bind($root, $data)">Save changes</a>
+        </div>*@
+
+    </script>
+
+}

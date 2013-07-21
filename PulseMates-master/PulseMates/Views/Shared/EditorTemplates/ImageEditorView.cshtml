@@ -1,0 +1,14 @@
+﻿@model DataSourceParameterValue<PulseMates.Models.Storage.File>
+
+<label>@Model.Name</label>
+
+@if (Model.Required)
+{
+    <input name="@Model.Name" type="file" data-val="true" data-val-required="@Model.Name is required" />
+}
+else
+{
+    <input name="@Model.Name" type="file" />
+}
+
+@Html.UsageFor(x => x.Usage)

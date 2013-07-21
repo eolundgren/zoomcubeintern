@@ -1,0 +1,14 @@
+﻿@model DataSourceParameterValue<Location>
+
+<label>@Model.Name</label>
+
+@if (Model.Required)
+{
+    <input name="@Model.Name" type="text" data-val="true" data-val-required="@Model.Name is required" class="editor-for-location" />    
+}
+else
+{
+    <input name="@Model.Name" type="text" class="editor-for-location" />
+}
+
+@Html.UsageFor(x => x.Usage)

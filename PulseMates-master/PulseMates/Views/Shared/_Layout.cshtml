@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ApplicationInfo.Title - @ViewBag.Title</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/PulseMates.less")" />
+        <link href='http://api.tiles.mapbox.com/mapbox.js/v1.1.0/mapbox.css' rel='stylesheet' />
+        <!--[if lte IE 8]>
+            <link href='http://api.tiles.mapbox.com/mapbox.js/v1.1.0/mapbox.ie.css' rel='stylesheet' />
+        <![endif]-->
+
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+
+        <header>
+
+            <div class="container-fluid">
+                <div class="row-fluid">
+
+                    <div class="span2">
+                        <h1>
+                            <span class="pub">Pub</span><span class="nine">9</span><span class="dot">.</span><span class="fm">fm</span>
+                        </h1>
+                    </div>
+
+                    <div class="span8">
+                        <input href ="#" id="SearchBar" data-toggle="popover" data-trigger="manual" rel="popover" data-content="This is the search bar. Try searching for 'Illinois'" onclick="Tutorial2();" type="text" placeholder="Search">
+                        <!--The search is set to go to the new tutorial on slick right now. Just call Tutorial2(); in the search event instead of on click later.-->
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div id="login">@Html.Partial("_LoginPartial")</div>
+            <div id="header-background"></div>
+
+        </header>
+
+        <section id="main">
+            
+            @RenderSection("featured", required: false)
+
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 id="myModalLabel">Is this your frst time?</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p>Zoomcube has a small arsenal of intuitive features made to give you the best experiece possible. Would you like to learn more about them?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="FirstTimeNo();">No</button>
+                            <button class="btn btn-primary" data-dismiss="modal" onclick="Tutorial1();">Yes</button>
+                        </div>
+                    </div>
+                    @RenderBody()
+            
+                </div>
+            </div>            
+        </section>
+
+        @*<footer>
+            <div class="container-fluid">
+                <div class="row-fluid">
+
+                    <div class="span8">
+                        <nav>
+                            <ul class="inline">
+                                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                <li>@Html.ActionLink("Participate", "Index", "Participate")</li>
+                                <li>@Html.ActionLink("Demos", "Index", "Demo")</li>
+                                <li>@Html.ActionLink("About", "About", "Home")</li>
+                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="span4">
+                        <p>@ApplicationInfo.Copyright</p>
+                    </div>
+
+                </div>
+            </div>
+        </footer>*@
+
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/knockout")
+        @RenderSection("scripts", required: false)
+        <script>
+            $("#myModal").modal('show');
+        </script>
+        <script>
+            var FirstTime = 0;
+            function Tutorial1() {
+                if (FirstTime == 0) {
+
+                    $("#SearchBar").popover('show');
+                    FirstTime = 1;
+                }
+            }
+            function Tutorial2() {
+                if (FirstTime == 1) {
+                    $("#SearchBar").popover('hide');
+                    $("#Tile1").popover('show');
+                    FirstTime = 2;
+                }
+            }
+            function Tutorial3() {
+                if (FirstTime == 2) {
+                    $("#Tile1").popover('hide');
+                    $("#CloseBox1").popover('show');
+                    $("#CloseBox2").popover('show');
+                    FirstTime = 3;
+                }
+            }
+            function Tutorial4() {
+                if (FirstTime == 3) {
+                    $("#CloseBox1").popover('hide');
+                    $("#CloseBox2").popover('hide');
+                    $("#map-toggleTab").popover('show');
+                    FirstTime = 4;
+                }
+            }
+            function Tutorial5() {
+                if (FirstTime == 4) {
+
+                    $("#map-toggleTab").popover('hide');
+                    $("#search").popover('show');
+                    FirstTime = 5;
+                }
+            }
+
+            function FirstTimeNo() {
+                FirstTime = 5;
+
+            }
+        </script>
+    </body>
+</html>

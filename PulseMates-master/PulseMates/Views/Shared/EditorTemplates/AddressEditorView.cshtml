@@ -1,0 +1,20 @@
+﻿@model DataSourceParameterValue<AddressLocation>
+@{
+    // '_' will be converted when posted to '.'    
+    var locationName = Model.Name + ".LatLong";
+    var addressName = Model.Name + ".Address";
+}
+
+<label>@Model.Name</label>
+<input type="hidden" name="@locationName" value="@Model.Value.LatLong" class="editor-for-location" />
+
+@if (Model.Required)
+{
+    <input type="text" name="@addressName" value="@Model.Value.Address" class="editor-for-address" data-val="true" data-val-required="@Model.Name is required" />
+}
+else
+{
+    <input type="text" name="@addressName" value="@Model.Value.Address" class="editor-for-address" />
+}
+
+@Html.UsageFor(x => x.Usage)
